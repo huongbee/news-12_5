@@ -9,9 +9,16 @@ class HomeController extends Controller{
 		$model = new HomeModel;
 		$slide = $model->getSlide();
 
-		return $this->loadView('trangchu',$slide);
-	}
+		$tin_noibat = $model->getTinNoibat();
+		$tin_moinhat = $model->getTinMoinhat();
+		$arrData = array(
+						'slide'=>$slide, 
+						'tin_noibat'=>$tin_noibat,
+						'tin_moinhat'=>$tin_moinhat
+					);
 
+		return $this->loadView('trangchu', $arrData);
+	}
 
 
 }

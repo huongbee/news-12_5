@@ -1,9 +1,15 @@
+<?php
 
+
+$slide = $data['slide'];
+$tin_noibat = $data['tin_noibat'];
+$tin_moinhat = $data['tin_moinhat'];
+?>
 <!-- banner -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	  <!-- Indicators -->
 	  <ol class="carousel-indicators">
-	    <?php for($i=0;$i<count($data); $i++){ ?>
+	    <?php for($i=0;$i<count($slide); $i++){ ?>
 	    	<li data-target="#myCarousel" data-slide-to="<?=$i?>" class="<?php if($i==0){ echo 'active';}?>"></li>
 	    <?php
 	    }
@@ -14,15 +20,16 @@
 	  <div class="carousel-inner" role="listbox">
 	    <?php
 
-	    for($i=0;$i<count($data); $i++){
+	    for($i=0;$i<count($slide); $i++){
 
 	    
 	    ?>
 	    <div class="item <?php if($i==0){ echo 'active';}?>">
-	      <img src="public/images/banner.jpg" alt="Chania">
+	      <img src="public/images/slide/<?=$slide[$i]->image;?>" alt="Chania" style="height: 500px">
+	     
 	      <div class="carousel-caption">
-	        <h3>Chania</h3>
-	        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+	        <h3><?=$slide[$i]->name;?></h3>
+	        
 	      </div>
 	    </div>
 	    <?php
@@ -46,11 +53,16 @@
 		<div class="container">
 			<div class="move-text">
 				<div class="breaking_news">
-					<h2>Breaking News</h2>
+					<h2>Tin nổi bật</h2>
 				</div>
 				<div class="marquee">
-					<div class="marquee1"><a class="breaking" href="single.html">A 5-year-old boy who recently returned to the U.S from Ebola-stricken West Africa is under observation after experiencing a fever.</a></div>
-					<div class="marquee2"><a class="breaking" href="single.html">The surprisingly successful president of the Philippines and peacemaking in the Philippines: Shaking it all up.</a></div>
+					<?php
+					foreach($tin_noibat as $noibat){
+					?>
+						<div class="marquee1"><a class="breaking" href="detail.php"><?=$noibat->title?></a></div>
+					<?php
+					}
+					?>
 					<div class="clearfix"></div>
 				</div>
 				<div class="clearfix"></div>
@@ -64,14 +76,13 @@
 				<div class="video-grids">
 					<div class="col-md-8 video-grids-left">
 						<div class="video-grids-left1">
-							<img src="public/images/9.jpg" alt=" " class="img-responsive" />
+							<img src="<?=$tin_moinhat->image;?>" alt=" " class="img-responsive" />
 							
 							<div class="video-grid-pos">
-								<h3><span>Bellevue</span>  Towers in Dubai Downtown UAE</h3>
+								<h3><?=$tin_moinhat->title;?></h3>
 								<ul>
-									<li>9:32 <label>|</label></li>
-									<li><i>Adom Smith</i> <label>|</label></li>
-									<li><span>Blogger</span></li>
+									<li><?=date('H:i:s d-m-Y',strtotime($tin_moinhat->created_at));?></li>
+									
 								</ul>
 							</div>
 								

@@ -7,13 +7,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
     font-size: 100%;
 	background:	#fff;
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Tahoma', sans-serif;
 }
 p{
 	margin:0;
 }
 h1,h2,h3,h4,h5,h6,a{
-	font-family: 'Oswald', sans-serif;
+	font-family: 'Tahoma', sans-serif;
 	font-weight:100;
 	margin:0;
 }
