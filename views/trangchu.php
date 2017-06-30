@@ -1,46 +1,33 @@
+
 <!-- banner -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 	  <!-- Indicators -->
 	  <ol class="carousel-indicators">
-	    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	    <li data-target="#myCarousel" data-slide-to="1"></li>
-	    <li data-target="#myCarousel" data-slide-to="2"></li>
-	    <li data-target="#myCarousel" data-slide-to="3"></li>
+	    <?php for($i=0;$i<count($data); $i++){ ?>
+	    	<li data-target="#myCarousel" data-slide-to="<?=$i?>" class="<?php if($i==0){ echo 'active';}?>"></li>
+	    <?php
+	    }
+	    ?>
 	  </ol>
 
 	  <!-- Wrapper for slides -->
 	  <div class="carousel-inner" role="listbox">
-	    <div class="item active">
+	    <?php
+
+	    for($i=0;$i<count($data); $i++){
+
+	    
+	    ?>
+	    <div class="item <?php if($i==0){ echo 'active';}?>">
 	      <img src="public/images/banner.jpg" alt="Chania">
 	      <div class="carousel-caption">
 	        <h3>Chania</h3>
 	        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
 	      </div>
 	    </div>
-
-	    <div class="item">
-	      <img src="public/images/banner.jpg" alt="Chania">
-	      <div class="carousel-caption">
-	        <h3>Chania</h3>
-	        <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-	      </div>
-	    </div>
-
-	    <div class="item">
-	      <img src="public/images/banner.jpg" alt="Flower">
-	      <div class="carousel-caption">
-	        <h3>Flowers</h3>
-	        <p>Beatiful flowers in Kolymbari, Crete.</p>
-	      </div>
-	    </div>
-
-	    <div class="item">
-	      <img src="public/images/banner.jpg" alt="Flower">
-	      <div class="carousel-caption">
-	        <h3>Flowers</h3>
-	        <p>Beatiful flowers in Kolymbari, Crete.</p>
-	      </div>
-	    </div>
+	    <?php
+	    }
+	    ?>
 	  </div>
 
 	  <!-- Left and right controls -->
