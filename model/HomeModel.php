@@ -18,10 +18,26 @@ class HomeModel extends database{
 		return $this->loadAllRows();
 	}
 
-	public function getTinMoinhat(){
+	public function getTinMoinhat_1Tin(){
 		$sql = "SELECT * FROM tintuc ORDER BY id DESC LIMIT 0,1";
 		$this->setQuery($sql);
 		return $this->loadRow();
+	}
+
+	public function getTinMoinhat(){
+		$sql = "SELECT * FROM tintuc ORDER BY id DESC LIMIT 1,10";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
+	public function getTheLoai_LoaiTin(){
+		$sql = "SELECT theloai.id AS idTheLoai, theloai.name AS TenTheLoai, 
+				theloai.image AS hinhTheLoai,
+				GROUP_CONCAT(loaitin.id, ':',loaitin.name,':',loaitin.alias) AS loaitin FROM theloai
+				INNER JOIN loaitin ON theloai.id = loaitin.id_theloai
+				GROUP BY theloai.id";
+		$this->setQuery($sql);
+		return $this->loadAllRows();	
 	}
 } 
 

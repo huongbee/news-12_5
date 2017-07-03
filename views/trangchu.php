@@ -3,7 +3,10 @@
 
 $slide = $data['slide'];
 $tin_noibat = $data['tin_noibat'];
+$tin_moinhat_1tin = $data['tin_moinhat_1tin'];
 $tin_moinhat = $data['tin_moinhat'];
+$theloai_loaitin = $data['theloai_loaitin'];
+//print_r($theloai_loaitin);
 ?>
 <!-- banner -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -76,12 +79,12 @@ $tin_moinhat = $data['tin_moinhat'];
 				<div class="video-grids">
 					<div class="col-md-8 video-grids-left">
 						<div class="video-grids-left1">
-							<img src="<?=$tin_moinhat->image;?>" alt=" " class="img-responsive" />
+							<img src="<?=$tin_moinhat_1tin->image;?>" alt=" " class="img-responsive" />
 							
 							<div class="video-grid-pos">
-								<h3><?=$tin_moinhat->title;?></h3>
+								<h3><?=$tin_moinhat_1tin->title;?></h3>
 								<ul>
-									<li><?=date('H:i:s d-m-Y',strtotime($tin_moinhat->created_at));?></li>
+									<li><?=date('H:i:s d-m-Y',strtotime($tin_moinhat_1tin->created_at));?></li>
 									
 								</ul>
 							</div>
@@ -90,36 +93,23 @@ $tin_moinhat = $data['tin_moinhat'];
 						<div class="video-grids-left2">
 							<div class="course_demo1">
 								<ul id="flexiselDemo1">	
+								<?php
+								foreach($tin_moinhat as $tin){
+
+								?>
 									<li>
 										<div class="item">
-											<img src="public/images/10.jpg" alt=" " class="img-responsive" />
+											<img src="public/images/tintuc/<?=$tin->image?>" alt=" " class="img-responsive" style="height: 150px" />
 											
 											<div class="floods-text">
-												<h3>The fed and inequality <span>Blogger <label>|</label> <i>Adom Smith</i></span></h3>
-												<p>5:56</p>
+												<h3 style="font-size: 16px; margin-bottom: 15px"><?=$tin->title?></h3>
+												<p><?=date('H:i:s d-m-Y',strtotime($tin->created_at))?></p>
 											</div>
 										</div>
 									</li>
-									<li>
-										<div class="item">
-											<img src="public/images/11.jpg" alt=" " class="img-responsive" />
-											
-											<div class="floods-text">
-												<h3>The fastest insect in the world <span>Blogger <label>|</label> <i>Adom Smith</i></span></h3>
-												<p>5:56</p>
-											</div>
-										</div>
-									</li>
-									<li>
-										<div class="item">
-											<img src="public/images/12.jpg" alt=" " class="img-responsive" />
-											
-											<div class="floods-text">
-												<h3>Billionaires versus Millionaires<span>Blogger <label>|</label> <i>Adom Smith</i></span></h3>
-												<p>5:56</p>
-											</div>
-										</div>
-									</li>
+								<?php
+								}
+								?>
 								</ul>
 							</div>
 							<!-- requried-jsfiles-for owl -->
@@ -249,162 +239,41 @@ $tin_moinhat = $data['tin_moinhat'];
 			<!-- video-bottom-grids -->
 				<div class="video-bottom-grids">
 					<div class="video-bottom-grids1">
+						<?php 
+						foreach($theloai_loaitin as $tl_lt){
+							$loaitin = $tl_lt->loaitin;
+							$arrLoaitin = explode(',', $loaitin);
+							
+						?>
 						<div class="col-md-3 video-bottom-grid">
 							<div class="video-bottom-grid1">
 								<div class="video-bottom-grid1-before">
-									<img src="public/images/13.jpg" alt=" " class="img-responsive" />
+									<img src="public/images/tintuc/<?=$tl_lt->hinhTheLoai?>" style="height: 200px" alt=" " class="img-responsive" />
 									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing </p>
+										<p><?=$tl_lt->TenTheLoai?></p>
 									</div>
 								</div>
 								<ul>
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
+								<?php
+								foreach($arrLoaitin as $loaitin){
+									$thongtin = explode(':', $loaitin);
+									list($id,$title,$alias) = explode(':', $loaitin)
+								?>
+									<li>
+										<a href="#"><?=$title;//$thongtin[1]?></a>
+									</li>
+								<?php
+								}
+								?>
 								</ul>
 								<div class="read-more">
 									<a href="single.html">Read more in business</a>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before1">
-									<img src="public/images/14.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet, consectetur.</p>
-									</div>
-								</div>
-								<ul class="list">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res">
-									<a href="single.html">Read more in world</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before2">
-									<img src="public/images/15.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet adipiscing. </p>
-									</div>
-								</div>
-								<ul class="list1">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res1">
-									<a href="single.html">Read more in world</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before3">
-									<img src="public/images/16.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet adipiscing. </p>
-									</div>
-								</div>
-								<ul class="list2">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res2">
-									<a href="single.html">Read more in Blogger</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<div class="video-bottom-grids1">
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before4">
-									<img src="public/images/10.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet adipiscing. </p>
-									</div>
-								</div>
-								<ul class="list2">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res3">
-									<a href="single.html">Read more in general</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before5">
-									<img src="public/images/11.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-									<p>Lorem ipsum dolor sit amet adipiscing. </p>
-									</div>
-								</div>
-								<ul class="list4">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res4">
-									<a href="single.html">Read more in economics</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before6">
-									<img src="public/images/12.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet adipiscing. </p>
-									</div>
-								</div>
-								<ul class="list5">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res5">
-									<a href="single.html">Read more in sports</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3 video-bottom-grid">
-							<div class="video-bottom-grid1">
-								<div class="video-bottom-grid1-before before7">
-									<img src="public/images/17.jpg" alt=" " class="img-responsive" />
-									<div class="video-bottom-grid1-pos">
-										<p>Lorem ipsum dolor sit amet adipiscing. </p>
-									</div>
-								</div>
-								<ul class="list6">
-									<li><a href="#">vel illum qui dolorem eum fugiat quo voluptas.</a></li>
-									<li><a href="#">Itaque earum rerum hic tenetur a sapiente delectus.</a></li>
-									<li><a href="#"> Neque porro quisquam est, qui dolor sit amet.</a></li>
-									<li><a href="#">But I must explain to you how all this mistaken.</a></li>
-								</ul>
-								<div class="read-more res6">
-									<a href="single.html">Read more in health</a>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix" style="margin-bottom: 50px"> </div>
+						<?php
+						}
+						?>
 					</div>
 				</div>
 			<!-- //video-bottom-grids -->
