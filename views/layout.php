@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							
 							list($id,$title,$alias) = explode(':', $loaitin)
 						?>
-					  <li><a href="icons.html"><?=$title?></a></li>
+					  <li><a href="type.php?id=<?=$id?>&alias=<?=$alias?>"><?=$title?></a></li>
 					 <?php
 					 }
 					 ?>
