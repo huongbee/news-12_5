@@ -128,4 +128,14 @@ class database{
         $this->_dbh = NULL;
     }
 }
+
+
+
+/*SELECT theloai.id as idTheLoai,theloai.name as tenTheLoai,theloai.image as hinhTheLoai,
+GROUP_CONCAT(tintuc.id,':',tintuc.title, ':',tintuc.alias)
+FROM theloai,loaitin,tintuc
+WHERE tintuc.id_loaitin = loaitin.id
+AND theloai.id = loaitin.id_theloai
+GROUP BY theloai.id
+ORDER By tintuc.views desc*/
 ?>  

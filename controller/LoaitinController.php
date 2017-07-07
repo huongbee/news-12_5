@@ -26,11 +26,13 @@ class LoaitinController extends Controller{
 		$menu = $this->getMenu();
 		$loaitin = $model->getLoaitinTheoID($id_loai);
 
+		$tinxemnhieu = $model->getTinXemNhieu();
 		$arrData = array(
 						'tintuc'=>$tintuc,
 						'menu'=>$menu,
 						'loaitin'=>$loaitin,
-						'link'=>$link
+						'link'=>$link,
+						'tinxemnhieu'=>$tinxemnhieu
 					);
 		return $this->loadView('loaitin',$arrData);
 	}

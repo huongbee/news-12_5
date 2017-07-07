@@ -16,13 +16,19 @@ class LoaitinModel extends database{
 	}
 
 	public function getLoaitinTheoID($id){
-		$sql = "SELECT loaitin.name as tenLoaitin, theloai.name as tenTheLoai
+		$sql = "SELECT loaitin.name as tenLoaitin, theloai.name as tenTheLoai, loaitin.alias as aliasLoaitin
 				FROM loaitin 
 				INNER JOIN theloai 
 					ON loaitin.id_theloai = theloai.id
 				WHERE loaitin.id=$id";
 		$this->setQuery($sql);
 		return $this->loadRow();
+	}
+
+	public function getTinXemNhieu(){
+		$sql = "SELECT * FROM tintuc ORDER BY views DESC LIMIT 0,20";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
 	}
 }
 

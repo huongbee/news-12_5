@@ -1,3 +1,10 @@
+<?php
+
+$tintuc = $data['tintuc'];
+
+print_r($tintuc);
+
+?>
 <!-- single -->
 	<div class="single">
 		<div class="container">
