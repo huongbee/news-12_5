@@ -11,8 +11,9 @@ class ChitiettinController extends Controller{
 		$id = $_GET['id'];
 		$model = new ChitiettinModel();
 		$tintuc = $model->getChitiettin($id);
+		$comment = $model->getComment($id);
 
-		$arrData = array('menu'=>$menu,'tintuc'=>$tintuc);
+		$arrData = array('menu'=>$menu,'tintuc'=>$tintuc,'comment'=>$comment);
 
 		return $this->loadView('chitiettin',$arrData);
 	}

@@ -1,4 +1,10 @@
-<div class="banner-bottom">
+<?php
+if(isset($_POST['dangki'])){
+	
+}
+
+?>
+	<div class="banner-bottom">
 		<div class="container">
 			<!-- news-and-events -->
 				<div class="row carousel-holder">
@@ -8,7 +14,7 @@
                 <div class="panel panel-default">
 				  	<h2>Sign up</h2>
 				  	<div class="panel-body">
-				    	<form>
+				    	<form method="POST">
 				    		<div>
 				    			<label>Full name</label>
 							  	<input type="text" class="form-control" placeholder="Username" name="name" aria-describedby="basic-addon1">
@@ -29,7 +35,7 @@
 							  	<input type="password" class="form-control" name="passwordAgain" aria-describedby="basic-addon1">
 							</div>
 							<br>
-							<button type="button" class="btn btn-success">Submit
+							<button type="button" class="btn btn-success" name="dangki">Submit
 							</button>
 
 				    	</form>

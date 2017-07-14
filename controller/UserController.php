@@ -5,8 +5,16 @@ include('Controller.php');
 class UserController extends Controller{
 
 	public function getSignup(){
-		return $this->loadView('dangki');
+		$menu = $this->getMenu();
+
+		$arrData = array('menu'=>$menu);
+
+		return $this->loadView('dangki',$arrData);
 	}
+
+
+
+	
 
 
 	public function getLogin(){

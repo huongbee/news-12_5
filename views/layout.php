@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav cl-effect-18" id="cl-effect-18">
-				<li class="act"><a href="index.html" class="effect1 active">Home</a></li>
+				<li class="act"><a href="./" class="effect1 active">Home</a></li>
 				<?php
 				foreach($menu as $mn){
 					$loaitin = $mn->loaitin;
@@ -68,7 +68,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<?php
 				}
 				?>
-				<li><a href="contact.html">Contact Us</a></li>
+				<li><a href="signup.php">Đăng kí</a></li>
+				<li><a href="login.php">Đăng nhập</a></li>
 			</ul>
 		</div>
 	</nav>

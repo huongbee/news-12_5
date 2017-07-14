@@ -62,7 +62,7 @@ $theloai_loaitin = $data['theloai_loaitin'];
 					<?php
 					foreach($tin_noibat as $noibat){
 					?>
-						<div class="marquee1"><a class="breaking" href="detail.php"><?=$noibat->title?></a></div>
+						<div class="marquee1"><a class="breaking" href="detail.php?id=<?=$noibat->id?>"><?=$noibat->title?></a></div>
 					<?php
 					}
 					?>
@@ -98,14 +98,16 @@ $theloai_loaitin = $data['theloai_loaitin'];
 
 								?>
 									<li>
-										<div class="item">
-											<img src="public/images/tintuc/<?=$tin->image?>" alt=" " class="img-responsive" style="height: 150px" />
-											
-											<div class="floods-text">
-												<h3 style="font-size: 16px; margin-bottom: 15px"><?=$tin->title?></h3>
-												<p><?=date('H:i:s d-m-Y',strtotime($tin->created_at))?></p>
+										<a href="detail.php?id=<?=$tin->id?>">
+											<div class="item">
+												<img src="public/images/tintuc/<?=$tin->image?>" alt=" " class="img-responsive" style="height: 150px" />
+												
+												<div class="floods-text">
+													<h3 style="font-size: 16px; margin-bottom: 15px"><?=$tin->title?></h3>
+													<p><?=date('H:i:s d-m-Y',strtotime($tin->created_at))?></p>
+												</div>
 											</div>
-										</div>
+										</a>
 									</li>
 								<?php
 								}
