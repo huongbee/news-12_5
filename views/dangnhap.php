@@ -1,3 +1,10 @@
+<?php
+if(isset($_POST['login'])){
+	$c = new UserController;
+	$c->postLogin();
+}
+
+?>
 <div class="banner-bottom">
 		<div class="container">
 			<!-- news-and-events -->
@@ -5,9 +12,19 @@
     		<div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="panel panel-default">
-				  	<h2>Login</h2>
+				  	<h2 style="margin-bottom: 20px">Login</h2>
+				  	<?php
+				  	if(isset($_COOKIE['loi'])):
+				  	?>
+
+					  	<div class="alert alert-danger">
+					  		<?=$_COOKIE['loi']?>
+					  	</div>
+				  	<?php
+				  	endif
+				  	?>
 				  	<div class="panel-body">
-				    	<form>
+				    	<form method="post">
 							<div>
 				    			<label>Email</label>
 							  	<input type="email" class="form-control" placeholder="Email" name="email">
@@ -18,7 +35,7 @@
 							  	<input type="password" class="form-control" name="password">
 							</div>
 							<br>
-							<button type="button" class="btn btn-success">Submit
+							<button type="submit" class="btn btn-success" name="login">Submit
 							</button>
 				    	</form>
 				  	</div>

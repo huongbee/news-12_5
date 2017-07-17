@@ -1,7 +1,7 @@
 <?php
 
 
-require ('dbconnect.php');
+include_once ('dbconnect.php');
 class UserModel extends database{
 
 
@@ -15,6 +15,16 @@ class UserModel extends database{
 		else{
 			return false;
 		}
+	}
+
+
+
+	public function getUser($email, $password){
+		$sql = "SELECT * FROM users 
+				WHERE email = '$email' 
+				AND password = '$password'";
+		$this->setQuery($sql);
+		return $this->loadRow();
 	}
 }
 

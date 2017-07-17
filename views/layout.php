@@ -5,6 +5,8 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
+ob_start();
+session_start();
 $menu = $data['menu']
 ?>
 <!DOCTYPE HTML>
@@ -68,13 +70,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<?php
 				}
 				?>
-				<li><a href="signup.php">Đăng kí</a></li>
-				<li><a href="login.php">Đăng nhập</a></li>
+
+				<?php
+				if(isset($_SESSION['username'])){
+				?>
+				<li role="presentation" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Chào bạn, <?=$_SESSION['username']?><span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="logout.php">Đăng xuất</a></li>
+					</ul>
+				</li>
+
+				<?php
+				}
+				else{
+				?>
+
+					<li><a href="signup.php">Đăng kí</a></li>
+					<li><a href="login.php">Đăng nhập</a></li>
+				<?php
+				}
+				?>
 			</ul>
 		</div>
 	</nav>
 	<!-- //menu -->
 
+	<?php
+	if(isset($_COOKIE['thanhcong'])):
+	?>
+	
+	<div class="alert alert-success fade in alert-dismissable" style="z-index: 1000; position: fixed; right: 10px; bottom: 10px">
+
+		<?=$_COOKIE['thanhcong']?>
+		<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+	</div>
+	<?php
+	endif
+
+	?>
 
 	<?php
 
