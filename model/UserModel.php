@@ -26,6 +26,12 @@ class UserModel extends database{
 		$this->setQuery($sql);
 		return $this->loadRow();
 	}
+
+	public function checkEmailExits($email){
+		$sql = "SELECT * FROM users WHERE email='$email'";
+		$this->setQuery($sql);
+		return $this->loadRow();
+	}
 }
 
 ?>

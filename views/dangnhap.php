@@ -35,8 +35,9 @@ if(isset($_POST['login'])){
 							  	<input type="password" class="form-control" name="password">
 							</div>
 							<br>
-							<button type="submit" class="btn btn-success" name="login">Submit
+							<button type="submit" class="btn btn-success" name="login">Đăng nhập
 							</button>
+							<a href="forget_password.php"><button type="button" class="btn btn-default" name="login">Quên mật khẩu</button></a>
 				    	</form>
 				  	</div>
 				</div>

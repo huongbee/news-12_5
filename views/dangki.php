@@ -1,5 +1,6 @@
 <?php
 
+$flag = true;
 if(isset($_POST['dangki'])){
 	$password = trim($_POST['password']);
 	$re_password = trim($_POST['passwordAgain']);
@@ -9,6 +10,7 @@ if(isset($_POST['dangki'])){
 	}
 	else{
 		//$_SESSION['loi'] = "Mật khẩu không giống nhau";
+		$flag = false;
 		setcookie('thatbai','Mật khẩu không giống nhau',time()+5);
 	}
 }
@@ -24,11 +26,11 @@ if(isset($_POST['dangki'])){
                 <div class="panel panel-default">
 				  	<h2 style="margin-bottom: 20px">Sign up</h2>
 				  	<?php
-				  	if(isset($_COOKIE['loi'])):
+				  	if($flag==false):
 				  	?>
 
 					  	<div class="alert alert-danger">
-					  		<?=$_COOKIE['loi']?>
+					  		Mật khẩu không giống nhau
 					  	</div>
 				  	<?php
 				  	endif
