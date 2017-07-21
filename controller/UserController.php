@@ -52,6 +52,7 @@ class UserController extends Controller{
 		$user = $model->getUser($email, md5($password));
 		if($user != NULL){
 			$_SESSION['username'] = $user->name;
+			$_SESSION['userID'] = $user->id;
 			setcookie('thanhcong','Đăng nhập thành công',time()+5);
 			header('Location:index.php');
 		}
@@ -80,12 +81,33 @@ class UserController extends Controller{
 		else{
 			$noidung = "
 			<h1 style='color:red'>Tiêu đề</h1>
-			<p>Click vào <a href='#'>đây</a> để thay đổi mât khẩu</p>
+			<p>Click vào <a href='http://localhost/news12_5/reset_password.php?email=$email'>đây</a> để thay đổi mât khẩu</p>
 			<img src='public/images/1.jpg'>";
 
 			Mailer($email,$user->name,'Reset Password','Nội dung tóm tắt',$noidung);
 			setcookie('thanhcong','Vui lòng mở hộp thư để reset password',time()+5);
 			header('Location:forget_password.php');
+		}
+	}
+
+
+	public function getResetPassword(){
+		$menu = $this->getMenu();
+		$arrData = array('menu'=>$menu);
+
+		return $this->loadView('reset_password',$arrData);
+	}
+
+	public function postResetPassword($password, $email){
+		$model = new UserModel;
+		$user = $model->updatePassword($email, md5($password));
+		if($user){
+			setcookie('thanhcong','Đổi mật khẩu thành công',time()+5);
+			header('Location:login.php');
+		}
+		else{
+			setcookie('loi','Thất bại',time()+5);
+			header('Location:reset_password.php');
 		}
 	}
 

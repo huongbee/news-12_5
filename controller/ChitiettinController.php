@@ -17,6 +17,21 @@ class ChitiettinController extends Controller{
 
 		return $this->loadView('chitiettin',$arrData);
 	}
+
+
+	public function postAddComment(){
+		$id_user =  $_POST['id_user'];
+		$id_tintuc = $_POST['id_tintuc'];
+		$comment = $_POST['binhluan'];
+		$model = new ChitiettinModel;
+		$new_cmt = $model->addComment($id_user,$id_tintuc,$comment);
+		if($new_cmt>0){
+			echo 'thành công';
+		}
+		else{
+			echo 'lỗi';
+		}
+	}
 }
 
 

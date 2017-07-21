@@ -62,13 +62,11 @@ $comment = $data['comment'];
 							?>
 						</div>	
 						<div class="coment-form">
-							<h4>Leave your comment</h4>
+							<h4>Bình luận</h4>
 							<form>
-								<input type="text" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-								<input type="email" value="Email (will not be published)*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email (will not be published)*';}" required="">
-								<input type="text" value="Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Website';}" required="">
-								<textarea type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
-								<input type="submit" value="Submit Comment" >
+								
+								<textarea id="content" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea >
+								<input type="button" value="Gửi bình luận" id="sendCMT" >
 							</form>
 						</div>
 					</div>
@@ -180,3 +178,35 @@ $comment = $data['comment'];
 		</div>
 	</div>
 <!-- //single -->
+<script>
+	$(document).ready(function(){
+		var sessionID = "<?php echo @$_SESSION['userID']?>";
+		var idTin = "<?php echo @$_GET['id']?>"
+		//console.log(session);
+		$('#sendCMT').click(function(){
+
+			if(sessionID == ''){
+				alert('Vui lòng đăng nhập trước khi thêm bình luận')
+			}
+			else{
+				var comment = $('#content').val();
+				$.ajax({
+					url:"add_comment.php",
+					data:{
+						binhluan:comment,
+						id_user:sessionID,
+						id_tintuc:idTin
+					}, //tên biến truyền đi:giá trị
+					type:"POST",
+					success:function(dataReturn){
+						console.log(dataReturn)
+					},
+					error:function(){
+						console.log('Lỗi')
+					}
+				})
+			}
+			
+		})
+	})
+</script>

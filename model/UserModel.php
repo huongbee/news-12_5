@@ -32,6 +32,13 @@ class UserModel extends database{
 		$this->setQuery($sql);
 		return $this->loadRow();
 	}
+
+
+	public function updatePassword($email, $password){
+		$sql = "UPDATE users SET password='$password' WHERE email = '$email'";
+		$this->setQuery($sql);
+		return $this->execute();
+	}
 }
 
 ?>

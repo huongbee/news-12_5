@@ -22,6 +22,19 @@ class ChitiettinModel extends database{
 		return $this->loadAllRows();
 	}
 
+
+	public function addComment($id_user,$id_tintuc,$content){
+		$sql = "INSERT INTO comment (id_user,id_tintuc,content) VALUES (?,?,?)";
+		$this->setQuery($sql);
+		$cmt = $this->execute(array($id_user,$id_tintuc,$content));
+		if($cmt){
+			return $this->getLastId();
+		}
+		else{
+			return false;
+		}
+	}
+
 }
 
 

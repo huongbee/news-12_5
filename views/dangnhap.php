@@ -23,6 +23,18 @@ if(isset($_POST['login'])){
 				  	<?php
 				  	endif
 				  	?>
+				  	<!-- thông báo thành công khi update pass -->
+					  	<?php
+					  	if(isset($_COOKIE['thanhcong'])):
+					  	?>
+
+						  	<div class="alert alert-success">
+						  		<?=$_COOKIE['thanhcong']?>
+						  	</div>
+					  	<?php
+					  	endif
+					  	?>
+					<!-- end -->
 				  	<div class="panel-body">
 				    	<form method="post">
 							<div>

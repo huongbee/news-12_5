@@ -27,7 +27,7 @@ if(isset($_POST['reset'])){
 				  	if(isset($_COOKIE['thanhcong'])):
 				  	?>
 
-					  	<div class="alert alert-danger">
+					  	<div class="alert alert-success">
 					  		<?=$_COOKIE['thanhcong']?>
 					  	</div>
 				  	<?php
