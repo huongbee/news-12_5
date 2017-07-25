@@ -45,7 +45,7 @@ $comment = $data['comment'];
 							<div class="media response-info">
 								<div class="media-left response-text-left">
 									<a href="#">
-										<img class="media-object" src="<?=$cmt->avatar?>" alt="" style="width: 100px"/>
+										<img class="media-object" src="<?=$cmt->avatar?>" alt="" style="width: 50px"/>
 									</a>
 									<h5><a href="#"><?=$cmt->name?></a></h5>
 								</div>
@@ -53,21 +53,45 @@ $comment = $data['comment'];
 									<p><?=$cmt->content?></p>
 									<ul>
 										<li><?=date('d-m-Y h:i:s', strtotime($cmt->created_at))?></li>
-									</ul>		
+										<li><span class="reply" idCmt="<?=$cmt->id?>">Reply</span></li>
+									</ul>	
+									<div class="media response-info">
+										<div class="media-left response-text-left">
+											<a href="#">
+												<img class="media-object" src="images/icon1.png" alt=""/>
+											</a>
+											<h5><a href="#">Admin</a></h5>
+										</div>
+										<div class="media-body response-text-right">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
+												sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<ul>
+												<li>October 25, 2016</li>
+												
+											</ul>		
+										</div>
+										<div class="clearfix"> </div>
+									</div>	
 								</div>
 								<div class="clearfix"> </div>
+
+								<div id="form_append_<?=$cmt->id?>"></div>
 							</div>
 							<?php
 							endforeach
 							?>
-						</div>	
-						<div class="coment-form">
-							<h4>Bình luận</h4>
-							<form>
-								
-								<textarea id="content" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea >
-								<input type="button" value="Gửi bình luận" id="sendCMT" >
-							</form>
+
+							<div id="append_data"></div>
+						</div>
+						<div class="cmt_form">	
+							<div class="coment-form">
+								<h4>Bình luận</h4>
+								<form>
+									
+									<textarea id="content" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea >
+									<input type="button" value="Gửi bình luận" id="sendCMT" >
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -199,7 +223,7 @@ $comment = $data['comment'];
 					}, //tên biến truyền đi:giá trị
 					type:"POST",
 					success:function(dataReturn){
-						console.log(dataReturn)
+						$('#append_data').append(dataReturn)
 					},
 					error:function(){
 						console.log('Lỗi')
@@ -207,6 +231,45 @@ $comment = $data['comment'];
 				})
 			}
 			
+		})
+
+
+		$('.reply').click(function(){
+			var idCmt = $(this).attr('idCmt')
+			var form = $('.cmt_form').html();
+			$('.cmt_form').hide();
+			$('#form_append_'+idCmt).html(form)
+
+
+			$('#sendCMT').click(function(){
+
+				if(sessionID == ''){
+					alert('Vui lòng đăng nhập trước khi thêm bình luận')
+				}
+				else{
+					var comment = $('#content').val();
+					$.ajax({
+						url:"add_re_comment.php",
+						data:{
+							binhluan:comment,
+							id_user:sessionID,
+							idCmt:idCmt
+						}, //tên biến truyền đi:giá trị
+						type:"POST",
+						success:function(dataReturn){
+							//$('#append_data').append(dataReturn)
+							alert(dataReturn)
+						},
+						error:function(){
+							console.log('Lỗi recmt')
+						}
+					})
+				}
+				
+		})
+
+
+
 		})
 	})
 </script>

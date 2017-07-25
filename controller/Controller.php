@@ -14,6 +14,10 @@ class Controller{
 		$menu = $model->getTheLoai_LoaiTin();
 		return $menu;
 	}
+
+	public function getView($view,$data=array()){
+		include("views/$view.php");
+	}
 }
 
 ?>

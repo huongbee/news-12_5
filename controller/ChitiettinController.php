@@ -26,7 +26,26 @@ class ChitiettinController extends Controller{
 		$model = new ChitiettinModel;
 		$new_cmt = $model->addComment($id_user,$id_tintuc,$comment);
 		if($new_cmt>0){
+			$comment = $model->getCommentByID($new_cmt);
+			return $this->getView('ajax_load_data',$comment);
+		}
+		else{
+			echo 'lỗi';
+		}
+	}
+
+
+	public function postAddReComment(){
+		$id_user =  $_POST['id_user'];
+		$idCmt = $_POST['idCmt'];
+		$comment = $_POST['binhluan'];
+
+		$model = new ChitiettinModel;
+		$new_cmt = $model->addReComment($id_user,$idCmt,$comment);
+		if($new_cmt>0){
 			echo 'thành công';
+			//$comment = $model->getCommentByID($new_cmt);
+			//return $this->getView('ajax_load_data',$comment);
 		}
 		else{
 			echo 'lỗi';

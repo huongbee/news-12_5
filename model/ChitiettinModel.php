@@ -35,6 +35,28 @@ class ChitiettinModel extends database{
 		}
 	}
 
+	public function getCommentByID($id){
+		$sql = "SELECT content, avatar, name, comment.created_at as ngaytao
+				FROM users 
+				INNER JOIN comment
+					ON comment.id_user = users.id
+				WHERE comment.id = $id";
+		$this->setQuery($sql);
+		return $this->loadRow();
+	}
+
+
+	public function addReComment($id_user,$idCmt,$content){
+		$sql = "INSERT INTO re_comment (id_user,id_comment,content) VALUES (?,?,?)";
+		$this->setQuery($sql);
+		$cmt = $this->execute(array($id_user,$idCmt,$content));
+		if($cmt){
+			return $this->getLastId();
+		}
+		else{
+			return false;
+		}
+	}
 }
 
 
