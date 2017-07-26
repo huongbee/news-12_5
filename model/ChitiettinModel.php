@@ -13,11 +13,16 @@ class ChitiettinModel extends database{
 
 
 	public function getComment($id_tin){
-		$sql = "SELECT comment.*, users.name, users.avatar 
+		$sql = "SELECT comment.*, users.name, users.avatar, 
+						GROUP_CONCAT(rc.content) as re_comment
 				FROM comment 
 				INNER JOIN users 
-				ON comment.id_user=users.id 
-				WHERE id_tintuc = $id_tin";
+					ON comment.id_user=users.id 
+                LEFT JOIN re_comment rc 
+                	ON rc.id_comment = comment.id
+				WHERE comment.id_tintuc = $id_tin                
+                GROUP BY comment.id
+                ORDER BY comment.id ASC";
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
@@ -57,6 +62,23 @@ class ChitiettinModel extends database{
 			return false;
 		}
 	}
+
+
+
+	public function getReCommentByID($id){
+		$sql = "SELECT re_comment.content as noidung, avatar, name, re_comment.created_at as ngaytao
+				FROM re_comment 
+				INNER JOIN comment
+					ON re_comment.id_comment = comment.id
+				INNER JOIN users
+					ON users.id = comment.id_user
+				WHERE re_comment.id = $id";
+		$this->setQuery($sql);
+		return $this->loadRow();
+	}
+
+
+
 }
 
 

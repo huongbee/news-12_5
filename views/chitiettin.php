@@ -72,6 +72,7 @@ $comment = $data['comment'];
 										</div>
 										<div class="clearfix"> </div>
 									</div>	
+									<div id="reply_<?=$cmt->id?>"></div>
 								</div>
 								<div class="clearfix"> </div>
 
@@ -257,8 +258,8 @@ $comment = $data['comment'];
 						}, //tên biến truyền đi:giá trị
 						type:"POST",
 						success:function(dataReturn){
-							//$('#append_data').append(dataReturn)
-							alert(dataReturn)
+							$('#reply_'+idCmt).append(dataReturn)
+							///alert(dataReturn)
 						},
 						error:function(){
 							console.log('Lỗi recmt')

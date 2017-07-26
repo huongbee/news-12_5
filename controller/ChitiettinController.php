@@ -43,9 +43,9 @@ class ChitiettinController extends Controller{
 		$model = new ChitiettinModel;
 		$new_cmt = $model->addReComment($id_user,$idCmt,$comment);
 		if($new_cmt>0){
-			echo 'thành công';
-			//$comment = $model->getCommentByID($new_cmt);
-			//return $this->getView('ajax_load_data',$comment);
+			//echo 'thành công';
+			$re_comment = $model->getReCommentByID($new_cmt);
+			return $this->getView('ajax_load_data_re_cmt',$re_comment);
 		}
 		else{
 			echo 'lỗi';
