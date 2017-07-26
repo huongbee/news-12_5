@@ -54,24 +54,35 @@ $comment = $data['comment'];
 									<ul>
 										<li><?=date('d-m-Y h:i:s', strtotime($cmt->created_at))?></li>
 										<li><span class="reply" idCmt="<?=$cmt->id?>">Reply</span></li>
-									</ul>	
-									<div class="media response-info">
-										<div class="media-left response-text-left">
-											<a href="#">
-												<img class="media-object" src="images/icon1.png" alt=""/>
-											</a>
-											<h5><a href="#">Admin</a></h5>
-										</div>
-										<div class="media-body response-text-right">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-												sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-											<ul>
-												<li>October 25, 2016</li>
-												
-											</ul>		
-										</div>
-										<div class="clearfix"> </div>
-									</div>	
+									</ul>
+									<?php
+
+									$re_cmt = $cmt->re_comment;
+									if(strlen($re_cmt)>0){
+										$arr_re_cmt = explode("::", $re_cmt);
+										//rint_r($arr_re_cmt) ;
+										foreach($arr_re_cmt as $reply){
+										?>	
+										<div class="media response-info">
+											<div class="media-left response-text-left">
+												<a href="#">
+													<img class="media-object" src="http://online.khoapham.vn/teacher/img/profile/khoa.jpg" alt="" style="width: 50px"/>
+												</a>
+												<h5><a href="#">Admin</a></h5>
+											</div>
+											<div class="media-body response-text-right">
+												<p><?=$reply?></p>
+												<ul>
+													<li>October 25, 2016</li>
+													
+												</ul>		
+											</div>
+											<div class="clearfix"> </div>
+										</div>	
+										<?php
+										}
+									}
+									?>
 									<div id="reply_<?=$cmt->id?>"></div>
 								</div>
 								<div class="clearfix"> </div>

@@ -14,7 +14,7 @@ class ChitiettinModel extends database{
 
 	public function getComment($id_tin){
 		$sql = "SELECT comment.*, users.name, users.avatar, 
-						GROUP_CONCAT(rc.content) as re_comment
+						GROUP_CONCAT(rc.content  SEPARATOR '::') as re_comment
 				FROM comment 
 				INNER JOIN users 
 					ON comment.id_user=users.id 
