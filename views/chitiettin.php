@@ -37,7 +37,7 @@ $comment = $data['comment'];
 								<div class="clearfix"> </div>
 						</div> -->
 						<div class="response">
-							<h4>Bình luận</h4>
+							<h4><button id="btnCMT">Bình luận</button></h4>
 							<?php
 
 							foreach($comment as $cmt):
@@ -100,7 +100,7 @@ $comment = $data['comment'];
 								<h4>Bình luận</h4>
 								<form>
 									
-									<textarea id="content" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea >
+									<textarea id="content" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required=""></textarea >
 									<input type="button" value="Gửi bình luận" id="sendCMT" >
 								</form>
 							</div>
@@ -117,97 +117,8 @@ $comment = $data['comment'];
 						<li><a href="#">Sed laoreet aliquam leo</a></li>
 						<li><a href="#">Cum sociis natoque penatibus</a></li>
 					</ul>
-					<div class="recent">
-						<h3>Recent Comments</h3>
-						<div class="recent-grids">
-							<div class="recent-grid">
-								<div class="wom">
-									<a href="#"><img src="public/images/6.jpg" alt=" " class="img-responsive" /></a>
-								</div>
-								<div class="wom-right">
-									<h4><a href="#">Integer rutrum ante eu</a></h4>
-									<p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. 
-										Ut tellus dolor, dapibus eget.</p>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="recent-grid">
-								<div class="wom">
-									<a href="#"><img src="public/images/7.jpg" alt=" " class="img-responsive" /></a>
-								</div>
-								<div class="wom-right">
-									<h4><a href="#">Integer rutrum ante eu</a></h4>
-									<p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. 
-										Ut tellus dolor, dapibus eget.</p>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="recent-grid">
-								<div class="wom">
-									<a href="#"><img src="public/images/8.jpg" alt=" " class="img-responsive" /></a>
-								</div>
-								<div class="wom-right">
-									<h4><a href="#">Integer rutrum ante eu</a></h4>
-									<p>Mauris fermentum dictum magna. Sed laoreet aliquam leo. 
-										Ut tellus dolor, dapibus eget.</p>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
-					</div>
-					<div class="footer-top-grid1">
-						<h3>Recent Tags</h3>
-						<ul class="tag2">
-							<li><a href="#">awesome</a></li>
-							<li><a href="#">strategy</a></li>
-							<li><a href="#">development</a></li>
-						</ul>
-						<ul class="tag2">
-							<li><a href="#">css</a></li>
-							<li><a href="#">photoshop</a></li>
-							<li><a href="#">photography</a></li>
-							<li><a href="#">html</a></li>
-						</ul>
-						<ul class="tag2">
-							<li><a href="#">awesome</a></li>
-							<li><a href="#">strategy</a></li>
-							<li><a href="#">development</a></li>
-						</ul>
-						<ul class="tag2">
-							<li><a href="#">css</a></li>
-							<li><a href="#">photoshop</a></li>
-							<li><a href="#">photography</a></li>
-							<li><a href="#">html</a></li>
-						</ul>
-						<ul class="tag2">
-							<li><a href="#">awesome</a></li>
-							<li><a href="#">strategy</a></li>
-							<li><a href="#">development</a></li>
-						</ul>
-					</div>
-					<div class="poll">
-						<h3>Poll</h3>
-							<div class="progress p">
-							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-								60%
-							  </div>
-							</div>
-							<div class="progress p">
-							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-								80%
-							  </div>
-							</div>
-							<div class="progress p">
-							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-								90%
-							  </div>
-							</div>
-							<div class="progress p">
-							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-								40%
-							  </div>
-							</div>
-					</div>
+					
+					
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -218,6 +129,14 @@ $comment = $data['comment'];
 	$(document).ready(function(){
 		var sessionID = "<?php echo @$_SESSION['userID']?>";
 		var idTin = "<?php echo @$_GET['id']?>"
+
+		$('.cmt_form').hide();
+
+		$('#btnCMT').click(function(){
+			$('div[id^="form_append_"]').hide();
+			$('.cmt_form').show();
+		})
+
 		//console.log(session);
 		$('#sendCMT').click(function(){
 
@@ -250,6 +169,11 @@ $comment = $data['comment'];
 			var idCmt = $(this).attr('idCmt')
 			var form = $('.cmt_form').html();
 			$('.cmt_form').hide();
+
+			
+			$('div[id^="form_append_"]').show();
+
+
 			$('#form_append_'+idCmt).html(form)
 
 
