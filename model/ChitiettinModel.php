@@ -14,13 +14,13 @@ class ChitiettinModel extends database{
 
 	public function getComment($id_tin){
 		$sql = "SELECT comment.*, users.name, users.avatar, 
-						GROUP_CONCAT(rc.content  SEPARATOR '::') as re_comment
+						GROUP_CONCAT(rc.content,'--', (SELECT GROUP_CONCAT(users.name,'--',users.avatar) FROM users WHERE users.id = rc.id_user),'--', rc.created_at  SEPARATOR '::') as re_comment
 				FROM comment 
 				INNER JOIN users 
 					ON comment.id_user=users.id 
                 LEFT JOIN re_comment rc 
                 	ON rc.id_comment = comment.id
-				WHERE comment.id_tintuc = $id_tin                
+				WHERE comment.id_tintuc = $id_tin            
                 GROUP BY comment.id
                 ORDER BY comment.id ASC";
 		$this->setQuery($sql);

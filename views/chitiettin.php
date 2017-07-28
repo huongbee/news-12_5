@@ -3,7 +3,6 @@ include('function/function.php');
 $tintuc = $data['tintuc'];
 $comment = $data['comment'];
 
-
 ?>
 <!-- single -->
 	<div class="single">
@@ -58,22 +57,25 @@ $comment = $data['comment'];
 									<?php
 
 									$re_cmt = $cmt->re_comment;
+
 									if(strlen($re_cmt)>0){
 										$arr_re_cmt = explode("::", $re_cmt);
-										//rint_r($arr_re_cmt) ;
+
 										foreach($arr_re_cmt as $reply){
+											$r = explode('--', $reply);
+											//print_r($r); die;
 										?>	
 										<div class="media response-info">
 											<div class="media-left response-text-left">
 												<a href="#">
-													<img class="media-object" src="http://online.khoapham.vn/teacher/img/profile/khoa.jpg" alt="" style="width: 50px"/>
+													<img class="media-object" src="<?=$r[2]?>" alt="" style="width: 50px"/>
 												</a>
-												<h5><a href="#">Admin</a></h5>
+												<h5><a href="#"><?=$r[1]?></a></h5>
 											</div>
 											<div class="media-body response-text-right">
-												<p><?=$reply?></p>
+												<p><?=$r[0]?></p>
 												<ul>
-													<li>October 25, 2016</li>
+													<li><?=date('d-m-Y',strtotime($r[3]))?></li>
 													
 												</ul>		
 											</div>
@@ -166,14 +168,17 @@ $comment = $data['comment'];
 
 
 		$('.reply').click(function(){
+			var arrID = [];
+			arrID.push(idCmt)
 			var idCmt = $(this).attr('idCmt')
 			var form = $('.cmt_form').html();
 			$('.cmt_form').hide();
 
 			
-			$('div[id^="form_append_"]').show();
+			$('div[id^="form_append_"]').hide();
 
-
+			$('#form_append_'+idCmt).show()
+			
 			$('#form_append_'+idCmt).html(form)
 
 

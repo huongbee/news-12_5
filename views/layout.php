@@ -38,7 +38,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<span class="icon-bar"></span>
 		  </button>
 			<div class="logo">
-				<a class="navbar-brand" href="index.html"><span>T</span> Trendy Blog</a>
+				<a class="navbar-brand" href="index.html"><span>T</span></a>
+				<input type="text" id="txtSearch" style="margin-top: 25px; margin-left: 20px">
+				<input type="button" value="Search" id="btnSearch" style="margin-top: 25px">
 			</div>
 		</div>
 
@@ -111,12 +113,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	?>
 
-	<?php
+	<div id="data_search">
 
-	include("$view.php");
+		<?php
 
-	?>
+		include("$view.php");
 
+		?>
+	</div>
 
 
 	<!-- footer -->
@@ -142,5 +146,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- for bootstrap working -->
 	<script src="public/js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
+
+<script>
+	$(document).ready(function(){
+		$('#btnSearch').click(function(){
+			var keyword = $('#txtSearch').val();
+			$.ajax({
+				url:"search.php",
+				type:'GET',
+				data:{tukhoa:keyword} ,//biên truyền đi: giá trị
+				success:function(data){
+					$('#data_search').html(data)
+				},
+				error:function(){
+					console.log('error')
+				}
+			})
+		})
+	})
+</script>
+
 </body>
 </html>

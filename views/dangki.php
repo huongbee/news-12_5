@@ -19,7 +19,7 @@ if(isset($_POST['dangki'])){
 	<div class="banner-bottom">
 		<div class="container">
 			<!-- news-and-events -->
-				<div class="row carousel-holder">
+			<div class="row carousel-holder">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">

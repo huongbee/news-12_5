@@ -27,6 +27,14 @@ class HomeController extends Controller{
 	}
 
 
+	public function search(){
+		$tukhoa = $_GET['tukhoa'];
+		$model = new HomeModel;
+		$data = $model->getSearch($tukhoa);
+		return $this->getView('ajax_search',$data);
+	}
+
+
 }
 
 
