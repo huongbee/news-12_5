@@ -31,7 +31,8 @@ class HomeController extends Controller{
 		$tukhoa = $_GET['tukhoa'];
 		$model = new HomeModel;
 		$data = $model->getSearch($tukhoa);
-		return $this->getView('ajax_search',$data);
+		$arrData = array('tintuc'=>$data, 'tukhoa'=>$tukhoa);
+		return $this->getView('ajax_search',$arrData);
 	}
 
 

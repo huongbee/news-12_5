@@ -4,10 +4,10 @@
 		<div class="row carousel-holder">
 
 			<div class="col-md-12 news-grid-left">
-				<h3>Tìm thấy ? tin tức</h3>
+				<h3>Tìm thấy <?=count($data['tintuc'])?> tin tức</h3>
 				<ul>
 					<?php
-					foreach($data as $tin){
+					foreach($data['tintuc'] as $tin){
 					?>
 					<li>
 						<div class="news-grid-left1">
@@ -15,9 +15,9 @@
 						</div>
 						<div class="news-grid-right1">
 						<!-- detail.php?aliasloaitin=<?=$loaitin->aliasLoaitin?>&id=<?=$tin->id;?>&alias=<?=$tin->alias?> -->
-							<h4><a href=""><?=$tin->title?></a></h4>
+							<h4><a href=""><?=str_replace(strtoupper($data['tukhoa']),"<b>$data[tukhoa]</b>",strtoupper($tin->title))?></a></h4>
 							<h5><i><?=date('d-m-Y H:i:s',strtotime($tin->created_at))?></i></h5>
-							<p><?=$tin->summary?></p>
+							<p><?=str_replace(strtolower($data['tukhoa']),"<b>$data[tukhoa]</b>", ucfirst(strtolower($tin->summary)))?></p>
 						</div>
 						<div class="clearfix"> </div>
 					</li>
