@@ -8,6 +8,14 @@ class ChitiettinController extends Controller{
 	public function getChitiettin(){
 		$menu = $this->getMenu();
 
+		
+		if(!isset($_GET['id']) || $_GET['id']==''){
+			include('404.html');
+			return;
+		}
+
+
+
 		$id = $_GET['id'];
 		$model = new ChitiettinModel();
 		$tintuc = $model->getChitiettin($id);
