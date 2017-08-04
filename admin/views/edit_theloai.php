@@ -12,8 +12,16 @@ if(isset($_POST['btnLuu'])){
   </div>
   <div class="panel-body">
   	<div class="col-md-6">
+
+    <?php
+    if(isset($_COOKIE['loi'])){
+    ?>
+      <div class="alert alert-danger"><?=$_COOKIE['loi']?></div>
+
+    <?php } ?>
+
       <form method="POST" enctype="multipart/form-data">
-      	Tên thể loại: <input type="text" class="form-control" name="tentheloai" value="<?=$data->name?>">
+      	Tên thể loại: <input type="text" class="form-control" name="tentheloai" value="<?=$data->name?>" required >
       	<br>
       	<div>
       		<img src="../public/images/tintuc/<?=$data->image?>" style="width: 200px" id="thumbnil">

@@ -12,7 +12,13 @@ class TheloaiModel extends database{
 	function editTheloai($name, $alias, $id){
 		$sql = "UPDATE theloai SET name='$name', alias='$alias' WHERE id=$id";
 		$this->setQuery($sql);
-		return $this->execute();
+		return $this->customExecute();
+	}
+
+	function editImageTheloai($id, $filename){
+		$sql = "UPDATE theloai SET image = '$filename' WHERE id=$id";
+		$this->setQuery($sql);
+		return $this->customExecute();
 	}
 
 
@@ -20,6 +26,18 @@ class TheloaiModel extends database{
 		$sql = "SELECT * FROM theloai WHERE id=$id";
 		$this->setQuery($sql);
 		return $this->loadRow();
+	}
+
+	public function deleteTheLoai($id){
+		$sql = "DELETE FROM theloai WHERE id=$id";
+		$this->setQuery($sql);
+		return $this->customExecute();
+	}
+
+	public function getLoaitinByIdTheloai($id_theloai){
+		$sql = "SELECT * FROM loaitin WHERE id_theloai=$id_theloai";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
 	}
 }
 

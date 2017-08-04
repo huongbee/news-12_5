@@ -80,6 +80,18 @@ class database{
         $this->_cursor->execute();
         return $this->_cursor;
     }
+
+    public function customExecute($options=array()) {
+        $this->_cursor = $this->_dbh->prepare($this->_sql);
+        
+        if($options) {  //If have $options then system will be tranmission parameters
+            for($i=0;$i<count($options);$i++) {
+                $this->_cursor->bindParam($i+1,$options[$i]);
+            }
+        }
+        return $this->_cursor->execute();
+         
+    }
     
     //Funtion load datas on table
     public function loadAllRows($options=array()) {
