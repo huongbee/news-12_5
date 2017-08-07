@@ -75,20 +75,23 @@ class TheLoaiController extends AdminController{
 		$loaitin = $model->getLoaitinByIdTheloai($id);
 		
 		if(count($loaitin)>0){
-			setcookie('loi','không thể xóa thể loại này',time()+2);
-			header('Location:danhsachtheloai.php');
+			//setcookie('loi','không thể xóa thể loại này',time()+2);
+			//header('Location:danhsachtheloai.php');
+			echo 'false';
 			return;
 		}
 
 		$result = $model->deleteTheLoai($id);
 		if($result){
-			setcookie('thanhcong','Xóa thành công',time()+2);
+			//setcookie('thanhcong','Xóa thành công',time()+2);
+			echo 'true';
 		}
 		else{
-			setcookie('loi','Xóa không thành công',time()+2);
+			//setcookie('loi','Xóa không thành công',time()+2);
+			echo 'false';
 		}
-
-		header('Location:danhsachtheloai.php');
+		return;
+		//header('Location:danhsachtheloai.php');
 
 	}
 }
