@@ -1,32 +1,27 @@
 <?php
 require_once('AdminController.php');
-require_once('model/TheLoaiModel.php');
+require_once('model/LoaitinModel.php');
 require_once('../include/functions.php');
 
-class TheLoaiController extends AdminController{
+class LoaitinController extends AdminController{
 
-	public function getListTheLoai(){
-		$model = new TheLoaiModel;
-		$theloai = $model->getTheloai();
-
-		return $this->loadView('list_theloai',$theloai);
-	}
-
-	public function getEditTheLoai(){
+	public function getListLoaitin(){
 		if(!isset($_GET['id']) || $_GET['id']==''){
 			include('../404.html');
 			return;
 		}
 		$id = $_GET['id'];
+		$model = new LoaitinModel;
+		$loaitin = $model->getLoaitinByIdTheLoai($id);
 
-		$model = new TheLoaiModel;
-		$theloai = $model->getTheLoaiById($id);
-
-		return $this->loadView('edit_theloai',$theloai);
+		return $this->loadView('list_loaitin',$loaitin);
 	}
 
 
 
+
+
+/*============================*/
 	public function postEditTheloai(){
 		if(!isset($_GET['id']) || $_GET['id']==''){
 			include('../404.html');

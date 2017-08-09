@@ -1,6 +1,6 @@
 
 <div class="panel panel-default">
-  <div class="panel-heading"><b>Admin</b>
+  <div class="panel-heading"><b>Tên loại tin .................</b>
   </div>
   <div class="panel-body">
   	<?php
@@ -21,27 +21,25 @@
 	    <thead>
 	      <tr>
 	        <th>STT</th>
-	        <th>Tên thể loại</th>
-	        <th>Hình</th>
-	        <th>Loại tin</th>
+	        <th>Tên Loại</th>
+	        <th>Tin tức</th>
 	        <th>Sửa | Xóa</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	    <?php
 	    $stt = 1;
-	    foreach($data as $theloai):
+	    foreach($data as $loaitin):
 	    	
 	    ?>
-	      <tr class="a-<?=$theloai->id?>">
+	      <tr class="a-<?=$loaitin->id?>">
 	        <td><?=$stt?></td>
-	        <td><?=$theloai->name?></td>
+	        <td id='input_append_<?=$loaitin->id?>'><?=$loaitin->name?></td>
 
-	        <td><img src="../public/images/tintuc/<?=$theloai->image?>" style="width: 100px"></td>
-	        <td><a href="danhsachloaitin.php?id=<?=$theloai->id?>">Xem danh sách loại tin</a></td>
+	        <td><a href="">Xem danh sách tin tức</a></td>
 	        <td>
-		        <a href="edit_theloai.php?id=<?=$theloai->id?>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> |
-		        <a dataId="<?=$theloai->id?>" id="delete-<?=$theloai->id?>"  data-toggle="modal" data-target="#myModal" ><i class="fa fa-trash-o fa-2x" aria-hidden="true" ></i></a>
+		        <a dataId="<?=$loaitin->id?>" id="edit-<?=$loaitin->id?>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> |
+		        <a dataId="<?=$loaitin->id?>" id="delete-<?=$loaitin->id?>"  data-toggle="modal" data-target="#myModal" ><i class="fa fa-trash-o fa-2x" aria-hidden="true" ></i></a>
 	        </td>
 	      </tr>
 	    <?php
@@ -73,23 +71,23 @@
 
 <script src="public/js/jquery.js"></script>
 <script>
-//delete_theloai.php?id=<?=$theloai->id?>
+//delete_loaitin.php?id=<?=$loaitin->id?>
 
 
 $(document).ready(function(){
 	$('a[id^="delete-"]').click(function(){
 		$('#result').html('');
-		var id_theloai = $(this).attr('dataId')
+		var id_loaitin = $(this).attr('dataId')
 
 		$('#accept').click(function(){
 
-			if(id_theloai!=''){
+			if(id_loaitin!=''){
 				
-				console.log(id_theloai)
+				console.log(id_loaitin)
 				$.ajax({
-					url:"delete_theloai.php",
+					url:"delete_loaitin.php",
 					type:'GET',
-					data: {id:id_theloai}, //biến truyền đi:giá trị của biến
+					data: {id:id_loaitin}, //biến truyền đi:giá trị của biến
 					success:function(data){
 						//console.log();
 						if($.trim(data)=='false'){
@@ -103,11 +101,18 @@ $(document).ready(function(){
 				})
 			}
 			
-			id_theloai = ''
+			id_loaitin = ''
 		})
 		
 	})
 
+
+	$('a[id^="edit-"]').click(function(){
+		var id_loaitin = $(this).attr('dataId')
+		var name = $('#input_append_'+id_loaitin).html()//lấy giá trị
+		var input = "<input value='"+name+"' class='form-control' name='tenloaitin' >";
+		$('#input_append_'+id_loaitin).html(input);//gán giá trị
+	})
 		
 })
 

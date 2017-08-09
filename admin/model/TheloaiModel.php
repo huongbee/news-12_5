@@ -39,6 +39,19 @@ class TheloaiModel extends database{
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
+
+
+	public function insertTheloai($name,$alias,$image){
+		$sql = "INSERT INTO theloai(name,alias,image) VALUES ('$name','$alias','$image')";
+		$this->setQuery($sql);
+		$result = $this->customExecute();
+		if($result){
+			return $this->getLastId();//8
+		}
+		else{
+			return false;//0
+		}
+	}
 }
 
 

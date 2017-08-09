@@ -300,11 +300,11 @@ ob_start();
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class=" fa fa-envelope"></i>
-                          <span>Mail</span>
+                          <span>Thể loại</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="inbox.html">Inbox</a></li>
-                          <li><a  href="inbox_details.html">Inbox Details</a></li>
+                          <li><a  href="danhsachtheloai.php">Danh sách thể loại</a></li>
+                          <li><a  href="add_theloai.php">Thêm thể loại</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
