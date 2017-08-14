@@ -53,8 +53,14 @@ class UserController extends Controller{
 		if($user != NULL){
 			$_SESSION['username'] = $user->name;
 			$_SESSION['userID'] = $user->id;
+			$_SESSION['role'] = $user->id_role;
 			setcookie('thanhcong','Đăng nhập thành công',time()+5);
-			header('Location:index.php');
+			if($_SESSION['role']==1 || $_SESSION['role']==2 || $_SESSION['role']==3){ //CEO
+				header('Location:admin/index.php');
+			}
+			elseif($_SESSION['role']==4){//ghust
+				header('Location:index.php');
+			}
 		}
 		else{
 			setcookie('loi','Đăng nhập không thành công',time()+5);

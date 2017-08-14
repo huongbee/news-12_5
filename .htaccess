@@ -1,0 +1,6 @@
+
+    DirectoryIndex /news12_5/index.php
+    RewriteEngine On
+    
+    RewriteRule	^([a-zA-Z0-9\-]+)$ type.php?id=$1
+

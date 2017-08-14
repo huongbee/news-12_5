@@ -22,42 +22,22 @@ class LoaitinController extends AdminController{
 
 
 /*============================*/
-	public function postEditTheloai(){
-		if(!isset($_GET['id']) || $_GET['id']==''){
-			include('../404.html');
-			return;
-		}
-		$id = $_GET['id'];
-		$name = trim($_POST['tentheloai']);
-		//var_dump($name); die;
-		if(strlen($name)<1){
-			setcookie('loi','Tên thể loại ko rỗng',time()+2);
-			header('Location:edit_theloai.php?id='.$id);
-			return;
-		}
-
+	public function postEditLoaitin(){
+		
+		$id = $_POST['id'];
+		$name = trim($_POST['name']);
+		
 		$alias = changeTitle($name);
 
-		$model = new TheLoaiModel;
-		$result = $model->editTheloai($name, $alias, $id);
-
-		$result_upload = true;
-
-		$image = $_FILES['hinh'];
-		if($image['name']!=''){
-			$name = date('h-i-s').'-'.$image['name'];
-			move_uploaded_file($image['tmp_name'], '../public/images/tintuc/'.$name);
-			$result_upload = $model->editImageTheloai($id,$name);
-
-		}
-		if($result_upload && $result){
-			setcookie('thanhcong','Sửa thành công',time()+2);
-			header('Location:danhsachtheloai.php');	
+		$model = new LoaitinModel;
+		$result = $model->editLoaitin($name, $alias, $id);
+		if($result==false){
+			echo "false";
 		}
 		else{
-			setcookie('loi','Sửa không thành công',time()+2);
-			header('Location:edit_theloai.php?id='.$id);
+			echo 'true';
 		}
+		return;
 	}
 
 	public function deleteTheloai(){

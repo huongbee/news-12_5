@@ -17,6 +17,12 @@
   		<div class="alert alert-danger"><?=$_COOKIE['loi']?></div>
 
   	<?php } ?>
+  	<?php
+  	if(isset($_COOKIE['notallow'])){
+  	?>
+  		<div class="alert alert-danger"><?=$_COOKIE['notallow']?></div>
+
+  	<?php } ?>
       <table class="table table-hover">
 	    <thead>
 	      <tr>
@@ -40,9 +46,19 @@
 	        <td><img src="../public/images/tintuc/<?=$theloai->image?>" style="width: 100px"></td>
 	        <td><a href="danhsachloaitin.php?id=<?=$theloai->id?>">Xem danh sách loại tin</a></td>
 	        <td>
-		        <a href="edit_theloai.php?id=<?=$theloai->id?>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> |
-		        <a dataId="<?=$theloai->id?>" id="delete-<?=$theloai->id?>"  data-toggle="modal" data-target="#myModal" ><i class="fa fa-trash-o fa-2x" aria-hidden="true" ></i></a>
+	        <?php
+	        if(isset($_SESSION['role']) && $_SESSION['role']==3){
+	        	echo "bạn không co quyền thực hiện chức năng này";
+	        }
+	        else{
+        	?>
+	        <a href="edit_theloai.php?id=<?=$theloai->id?>"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a> |
+	        <a dataId="<?=$theloai->id?>" id="delete-<?=$theloai->id?>"  data-toggle="modal" data-target="#myModal" ><i class="fa fa-trash-o fa-2x" aria-hidden="true" ></i></a>
+	        <?php
+	        }
+	        ?>
 	        </td>
+
 	      </tr>
 	    <?php
 	    $stt++;

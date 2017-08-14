@@ -13,6 +13,7 @@ class TheLoaiController extends AdminController{
 	}
 
 	public function getEditTheLoai(){
+		$this->checkRole();
 		if(!isset($_GET['id']) || $_GET['id']==''){
 			include('../404.html');
 			return;
@@ -28,6 +29,7 @@ class TheLoaiController extends AdminController{
 
 
 	public function postEditTheloai(){
+		$this->checkRole();
 		if(!isset($_GET['id']) || $_GET['id']==''){
 			include('../404.html');
 			return;
@@ -66,6 +68,7 @@ class TheLoaiController extends AdminController{
 	}
 
 	public function deleteTheloai(){
+		echo $this->checkRole();
 		if(!isset($_GET['id']) || $_GET['id']==''){
 			include('../404.html');
 			return;
