@@ -7,12 +7,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 ob_start();
 session_start();
+$_SESSION['lang'] = 'vi';
+$_SESSION['lang'] = isset($_GET['lang'])?$_GET['lang']:'vi';
+
+require_once('include/functions.php');
+
+
 $menu = $data['menu']
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Trendy Blog a Blogging Category Bootstrap Responsive Website Template  | Home :: w3layouts</title>
+<title><?=setLang('Trang chủ', 'Home')?></title>
 <base href="http://localhost/news12_5/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -56,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				?>
 				<li role="presentation" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-					  <?=$mn->TenTheLoai?> <span class="caret"></span>
+					  <?=setLang($mn->TenTheLoai_vi,$mn->TenTheLoai_en)?> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 					  <?php
@@ -90,8 +96,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				else{
 				?>
 
-					<li><a href="signup.php">Đăng kí</a></li>
-					<li><a href="login.php">Đăng nhập</a></li>
+					<li><a href="signup.php"><?=setLang('Đăng kí', 'Sign up')?></a></li>
+					<li><a href="login.php"><?=setLang('Đăng nhập', 'Sign in')?></a></li>
 				<?php
 				}
 				?>

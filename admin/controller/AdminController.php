@@ -6,8 +6,9 @@ class AdminController{
 
 
 	public function __construct(){
+
 		$this->role = $_SESSION['role'];
-		if(isset($_SESSION['role']) && $_SESSION['role']==4){
+		if(!isset($_SESSION['role']) || $_SESSION['role']==4){
 			header("Location:../index.php");
 		}
 		return $this->role;

@@ -1,6 +1,8 @@
+RewriteEngine On
 
-    DirectoryIndex /news12_5/index.php
-    RewriteEngine On
-    
-    RewriteRule	^([a-zA-Z0-9\-]+)$ type.php?id=$1
+RewriteRule	^([0-9]+)-(.*)$ type.php?id=$1&alias=$2
 
+RewriteRule ^(.*)-([0-9]+)-(.*).html$ detail.php?aliasloaitin=$1&id=$2&alias=$3
+
+ErrorDocument 404 /news12_5/404.html
+ErrorDocument 500 /news12_5/505.html

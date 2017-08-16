@@ -107,10 +107,11 @@ class TheLoaiController extends AdminController{
 
 		if($_POST['tentheloai'] || $_FILES['hinh']['name'] ==''){
 			$name = $_POST['tentheloai'];
+			$name_en = $_POST['tentheloai_en'];
 			move_uploaded_file($_FILES['hinh']['tmp_name'], '../public/images/tintuc/'.$_FILES['hinh']['name']);
 
 			$model = new TheLoaiModel;
-			$result = $model->insertTheloai($name,changeTitle($name),$_FILES['hinh']['name']);
+			$result = $model->insertTheloai($name,changeTitle($name),$name_en,changeTitle($name_en),$_FILES['hinh']['name']);
 
 			if($result>0){
 				setcookie('thanhcong','Thêm thành công',time()+1);

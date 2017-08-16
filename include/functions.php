@@ -57,4 +57,8 @@ function changeTitle($str){
 }
 
 
+function setLang($vi,$en){
+    return $_SESSION['lang']=='vi'?$vi:$en;
+}
+
 ?>

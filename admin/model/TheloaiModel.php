@@ -41,8 +41,8 @@ class TheloaiModel extends database{
 	}
 
 
-	public function insertTheloai($name,$alias,$image){
-		$sql = "INSERT INTO theloai(name,alias,image) VALUES ('$name','$alias','$image')";
+	public function insertTheloai($name,$alias,$name_en,$alias_en,$image){
+		$sql = "INSERT INTO theloai(name,alias,name_en,alias_en,image) VALUES ('$name','$alias','$name_en','$alias_en','$image')";
 		$this->setQuery($sql);
 		$result = $this->customExecute();
 		if($result){

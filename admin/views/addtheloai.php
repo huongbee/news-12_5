@@ -22,8 +22,10 @@ if(isset($_POST['btnThem'])){
     <?php } ?>
 
       <form method="POST" enctype="multipart/form-data">
-      	Tên thể loại: <input type="text" class="form-control" name="tentheloai" placeholder="Nhập tên thể loại" required >
+      	Tên thể loại VN: <input type="text" class="form-control" name="tentheloai" placeholder="Nhập tên thể loại" required >
       	<br>
+        Tên thể loại EN: <input type="text" class="form-control" name="tentheloai_en" placeholder="Nhập tên thể loại EL" required >
+        <br>
         <div>
           <img  style="width: 200px" id="thumbnil">
         </div><br>

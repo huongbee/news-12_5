@@ -31,7 +31,7 @@ class HomeModel extends database{
 	}
 
 	public function getTheLoai_LoaiTin(){
-		$sql = "SELECT theloai.id AS idTheLoai, theloai.name AS TenTheLoai, 
+		$sql = "SELECT theloai.id AS idTheLoai, theloai.name AS TenTheLoai_vi, theloai.name_en AS TenTheLoai_en,
 				theloai.image AS hinhTheLoai,
 				GROUP_CONCAT(loaitin.id, ':',loaitin.name,':',loaitin.alias) AS loaitin FROM theloai
 				INNER JOIN loaitin ON theloai.id = loaitin.id_theloai
